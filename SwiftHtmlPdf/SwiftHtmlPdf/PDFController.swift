@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 import SafariServices
 
-class PDFComposer {
-    static func renderHtml(templateResource: String, delegate: PDFComposerDelegate) -> String? {
+public class PDFComposer {
+    static public func renderHtml(templateResource: String, delegate: PDFComposerDelegate) -> String? {
         guard let path = Bundle.main.path(forResource: templateResource, ofType: "html") else {
             return nil
         }
@@ -135,18 +135,18 @@ class PDFComposer {
 
 import WebKit
 
-class PDFPreview: UIViewController, WKUIDelegate {
+public class PDFPreview: UIViewController, WKUIDelegate {
     
     var webView: WKWebView!
     
-    var delegate: PDFComposerDelegate?
-    var resource: String?
+    public var delegate: PDFComposerDelegate?
+    public var resource: String?
     
     weak var displayingVC: UIViewController?
     
     private var htmlContent: String?
     
-    override func loadView() {
+    public override func loadView() {
         super.loadView()
         
         let webConfiguration = WKWebViewConfiguration()
@@ -155,7 +155,7 @@ class PDFPreview: UIViewController, WKUIDelegate {
         view = webView
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         loadPreview()
@@ -163,13 +163,13 @@ class PDFPreview: UIViewController, WKUIDelegate {
         UIApplication.shared.statusBarStyle = .default
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
-    func loadPreview() {
+    private func loadPreview() {
         guard let delegate = delegate, let templateResource = resource else {
             print("could not load Preview. Delegate not set!")
             return
@@ -224,7 +224,7 @@ class CustomPrintPageRenderer: UIPrintPageRenderer {
     }
 }
 
-protocol PDFComposerDelegate {
+public protocol PDFComposerDelegate {
     func valueForParameter(parameter: String, index: Int) -> String
     func itemsForParameter(parameter: String, index: Int) -> [PDFComposerDelegate]
 }
