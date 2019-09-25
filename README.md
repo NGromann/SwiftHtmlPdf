@@ -8,14 +8,12 @@ This library allows you to generate HTML and PDF using HTML template files. Try 
 
 You can install SwiftHtmlPdf using Cocoa Pods.
 
-Specify SwiftHtmlPdf into your project's `Podfile`:
+Add SwiftHtmlPdf into your project's `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '12.0'
-use_frameworks!
-
-pod 'SwiftHtmlPdf'
+target 'MyApp' do
+  pod 'SwiftHtmlPdf', '~> 1.0'
+end
 ```
 
 Then run the following command:
