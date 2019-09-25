@@ -11,20 +11,26 @@ import UIKit
 import SafariServices
 
 public class PDFComposer {
-    static public func renderHtml(templateResource: String, delegate: PDFComposerDelegate) -> String? {
+    static public func renderHtmlFromResource(templateResource: String, delegate: PDFComposerDelegate) -> String? {
         guard let path = Bundle.main.path(forResource: templateResource, ofType: "html") else {
             return nil
         }
         do {
-            var template = try String(contentsOfFile: path)
+            let template = try String(contentsOfFile: path)
             
-            let regions = parseRegionsInTemplate(&template)
-            
-            return parseRegion(template, delegate: delegate, regions: regions)
+            return renderHtmlFromTemplate(template: template, delegate: delegate)
         }
         catch {
             return nil
         }
+    }
+    
+    static public func renderHtmlFromTemplate(template: String, delegate: PDFComposerDelegate) -> String {
+        var parsedTemplate = template
+        
+        let regions = parseRegionsInTemplate(&parsedTemplate)
+        
+        return parseRegion(template, delegate: delegate, regions: regions)
     }
     
     private static func parseRegion(_ region: String, delegate: PDFComposerDelegate, regions: [String: String], index: Int = 0) -> String {
@@ -137,28 +143,27 @@ import WebKit
 
 public class PDFPreview: UIViewController, WKUIDelegate {
     
-    var webView: WKWebView!
+    private var webView: WKWebView?
     
-    public var delegate: PDFComposerDelegate?
-    public var resource: String?
-    
-    weak var displayingVC: UIViewController?
-    
-    private var htmlContent: String?
+    private(set) public var delegate: PDFComposerDelegate?
+    private(set) public var resource: String?
+    private(set) public var htmlContent: String?
     
     public override func loadView() {
         super.loadView()
         
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
+        webView!.uiDelegate = self
         view = webView
+        
+        if let htmlContent = htmlContent {
+            loadPreviewFromHtml(htmlContent: htmlContent)
+        }
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        loadPreview()
         
         UIApplication.shared.statusBarStyle = .default
     }
@@ -169,27 +174,39 @@ public class PDFPreview: UIViewController, WKUIDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
-    private func loadPreview() {
-        guard let delegate = delegate, let templateResource = resource else {
-            print("could not load Preview. Delegate not set!")
-            return
+    public func loadPreviewFromHtmlTemplateResource(templateResource: String, delegate: PDFComposerDelegate) throws {
+        guard let htmlContent = PDFComposer.renderHtmlFromResource(templateResource: templateResource, delegate: delegate) else {
+            print("Could not load html template resource: \(templateResource)")
+            throw NSError()
         }
         
-        guard let htmlContent = PDFComposer.renderHtml(templateResource: templateResource, delegate: delegate) else {
-            print("could not generate HTML.")
-            return
-        }
+        self.delegate = delegate
+        self.resource = templateResource
         
+        loadPreviewFromHtml(htmlContent: htmlContent)
+    }
+    
+    public func loadPreviewFromHtmlTemplate(htmlTemplate: String, delegate: PDFComposerDelegate) {
+        let htmlContent = PDFComposer.renderHtmlFromTemplate(template: htmlTemplate, delegate: delegate)
+        
+        self.delegate = delegate
+        
+        loadPreviewFromHtml(htmlContent: htmlContent)
+    }
+    
+    public func loadPreviewFromHtml(htmlContent: String) {
         self.htmlContent = htmlContent
         
-        webView.loadHTMLString(htmlContent, baseURL: nil)
+        if let webView = webView {
+            webView.loadHTMLString(htmlContent, baseURL: nil)
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func savevButtonTapped(_ sender: UIBarButtonItem) {
-        guard let htmlContent = htmlContent, let displayingVC = displayingVC else {
+        guard let htmlContent = htmlContent else {
             print("could not save.")
             return
         }

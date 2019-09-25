@@ -111,10 +111,13 @@ extension ViewController: PDFComposerDelegate {
     func showPdfPreview() {
         let preview = PDFPreview()
         
-        preview.delegate = self
-        preview.resource = "planbuildpro-baukosten-template"
+        do {
+            try preview.loadPreviewFromHtmlTemplateResource(templateResource: "planbuildpro-baukosten-template", delegate: self)
         
-        present(preview, animated: true, completion: nil)
+            present(preview, animated: true, completion: nil)
+        } catch {
+            print("Could not open pdf preview")
+        }
     }
     
     func valueForParameter(parameter: String, index: Int) -> String {
