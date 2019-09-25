@@ -68,6 +68,7 @@ Pod::Spec.new do |spec|
 
   # spec.platform     = :ios
   spec.platform     = :ios, "10.0"
+  spec.swift_version = "5.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
@@ -96,7 +97,7 @@ Pod::Spec.new do |spec|
 
   # spec.source_files  = "Classes", "Classes/**/*.{h,m}"
   # spec.exclude_files = "Classes/Exclude"
-  spec.source_files  = "SwiftHtmlPdf"
+  spec.source_files  = "SwiftHtmlPdf/SwiftHtmlPdf"
 
   # spec.public_header_files = "Classes/**/*.h"
 
