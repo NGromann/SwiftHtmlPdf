@@ -228,7 +228,7 @@ public class PDFPreview: UIViewController, WKUIDelegate {
 
 public class PDFPreviewController: UINavigationController {
     public static func instantiate() -> PDFPreviewController {
-        return UIStoryboard(name: "PDFPreview", bundle: Bundle(identifier: "de.swtn.SwiftHtmlPdf")).instantiateInitialViewController() as! PDFPreviewController
+        return UIStoryboard(name: "PDFPreview", bundle: Bundle(for: self)).instantiateInitialViewController() as! PDFPreviewController
     }
     
     private var pdfPreview: PDFPreview? {
