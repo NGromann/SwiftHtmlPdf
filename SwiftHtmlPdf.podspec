@@ -97,7 +97,7 @@ Pod::Spec.new do |spec|
 
   # spec.source_files  = "Classes", "Classes/**/*.{h,m}"
   # spec.exclude_files = "Classes/Exclude"
-  spec.source_files  = "SwiftHtmlPdf/SwiftHtmlPdf"
+  spec.source_files  = "SwiftHtmlPdf/SwiftHtmlPdf", "SwiftHtmlPdf/SwiftHtmlPdf/**/*.storyboard"
 
   # spec.public_header_files = "Classes/**/*.h"
 
@@ -112,7 +112,7 @@ Pod::Spec.new do |spec|
 
   # spec.resource  = "icon.png"
   # spec.resources = "Resources/*.png"
-  spec.resources = "SwiftHtmlPdf/SwiftHtmlPdf/**/*.storyboard"
+  # spec.resources = "SwiftHtmlPdf/SwiftHtmlPdf/**/*.storyboard"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
