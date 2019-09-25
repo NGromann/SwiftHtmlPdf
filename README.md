@@ -28,12 +28,7 @@ $ pod install
 
 ## Usage
 
-#### Import the library:
-```swift
-import SwiftHtmlPdf
-```
-
-#### Create a html template resource and save it in your project:
+### Create a html template resource and save it in your project:
 ```html
 <!DOCTYPE html>
 <html>
@@ -66,9 +61,11 @@ Note the following HTML tags
 * ```<field name="Name"/>```
   * This is a field that will be replaced by a variable
   
-#### Create the models and the delegates
+### Fill the template with data
 First create your model and implement ```PDFComposerDelegate```
 ```swift
+import SwiftHtmlPdf
+...
 class MyListItem: PDFComposerDelegate {
     var name: String
     
@@ -106,7 +103,7 @@ extension ViewController: PDFComposerDelegate {
     }
 ```
 
-#### Show a Preview Dialog in your app
+### Show a Preview Dialog in your app
 ```swift
 func showPdfPreview() {
         let preview = PDFPreviewController.instantiate()
