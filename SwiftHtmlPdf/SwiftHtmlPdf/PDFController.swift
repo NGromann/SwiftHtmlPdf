@@ -205,7 +205,7 @@ public class PDFPreview: UIViewController, WKUIDelegate {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func savevButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func exportButtonTapped(_ sender: UIBarButtonItem) {
         guard let htmlContent = htmlContent else {
             print("could not save.")
             return
@@ -214,9 +214,31 @@ public class PDFPreview: UIViewController, WKUIDelegate {
         let path = PDFComposer.exportHTMLContentToPDF(HTMLContent: htmlContent)
         let pdfData = NSData(contentsOfFile: path)
         let activityVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
-//        dismiss(animated: true, completion: nil)
+
         self.present(activityVC, animated: true, completion: nil)
         activityVC.popoverPresentationController?.barButtonItem = sender
+    }
+}
+
+public class PDFPreviewController: UINavigationController {
+    public static func instantiate() -> PDFPreviewController {
+        return UIStoryboard(name: "PDFPreview", bundle: Bundle(identifier: "de.swtn.SwiftHtmlPdf")).instantiateInitialViewController() as! PDFPreviewController
+    }
+    
+    private var pdfPreview: PDFPreview? {
+        return topViewController as? PDFPreview
+    }
+    
+    public func loadPreviewFromHtmlTemplateResource(templateResource: String, delegate: PDFComposerDelegate) throws {
+        try pdfPreview?.loadPreviewFromHtmlTemplateResource(templateResource: templateResource, delegate: delegate)
+    }
+    
+    public func loadPreviewFromHtmlTemplate(htmlTemplate: String, delegate: PDFComposerDelegate) {
+        pdfPreview?.loadPreviewFromHtmlTemplate(htmlTemplate: htmlTemplate, delegate: delegate)
+    }
+    
+    public func loadPreviewFromHtml(htmlContent: String) {
+        pdfPreview?.loadPreviewFromHtml(htmlContent: htmlContent)
     }
 }
 

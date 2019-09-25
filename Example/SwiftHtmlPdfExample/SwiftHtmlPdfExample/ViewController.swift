@@ -109,11 +109,11 @@ extension ViewController: UITableViewDataSource {
 // MARK: - SwiftHtmlPdf Implementation
 extension ViewController: PDFComposerDelegate {
     func showPdfPreview() {
-        let preview = PDFPreview()
+        let preview = PDFPreviewController.instantiate()
         
         do {
             try preview.loadPreviewFromHtmlTemplateResource(templateResource: "planbuildpro-baukosten-template", delegate: self)
-        
+
             present(preview, animated: true, completion: nil)
         } catch {
             print("Could not open pdf preview")
