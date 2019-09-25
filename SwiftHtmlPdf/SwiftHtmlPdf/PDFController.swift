@@ -215,6 +215,12 @@ public class PDFPreview: UIViewController, WKUIDelegate {
         let pdfData = NSData(contentsOfFile: path)
         let activityVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
 
+        activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            if completed {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
         self.present(activityVC, animated: true, completion: nil)
         activityVC.popoverPresentationController?.barButtonItem = sender
     }
