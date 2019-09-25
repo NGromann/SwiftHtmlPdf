@@ -13,21 +13,9 @@
 		55CB32C5233905CB003BF357 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55CB32C3233905CB003BF357 /* Main.storyboard */; };
 		55CB32C7233905CC003BF357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55CB32C6233905CC003BF357 /* Assets.xcassets */; };
 		55CB32CA233905CC003BF357 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55CB32C8233905CC003BF357 /* LaunchScreen.storyboard */; };
-		55CB32D8233906B7003BF357 /* SwiftHtmlPdf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CB32D62339064C003BF357 /* SwiftHtmlPdf.framework */; };
-		55CB32D9233906B7003BF357 /* SwiftHtmlPdf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55CB32D62339064C003BF357 /* SwiftHtmlPdf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55CB32DD233912AD003BF357 /* Cost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB32DC233912AD003BF357 /* Cost.swift */; };
 		55CB32E0233915B5003BF357 /* planbuildpro-baukosten-template.html in Resources */ = {isa = PBXBuildFile; fileRef = 55CB32DF233915B4003BF357 /* planbuildpro-baukosten-template.html */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		55CB32D52339064C003BF357 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55CB32D12339064C003BF357 /* SwiftHtmlPdf.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 55CB32A2233903DE003BF357;
-			remoteInfo = SwiftHtmlPdf;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		55CB32DA233906B8003BF357 /* Embed Frameworks */ = {
@@ -36,7 +24,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				55CB32D9233906B7003BF357 /* SwiftHtmlPdf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,7 +39,6 @@
 		55CB32C6233905CC003BF357 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55CB32C9233905CC003BF357 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55CB32CB233905CC003BF357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55CB32D12339064C003BF357 /* SwiftHtmlPdf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHtmlPdf.xcodeproj; path = ../../SwiftHtmlPdf/SwiftHtmlPdf.xcodeproj; sourceTree = "<group>"; };
 		55CB32DC233912AD003BF357 /* Cost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cost.swift; sourceTree = "<group>"; };
 		55CB32DF233915B4003BF357 /* planbuildpro-baukosten-template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "planbuildpro-baukosten-template.html"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,7 +48,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55CB32D8233906B7003BF357 /* SwiftHtmlPdf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +57,6 @@
 		55CB32B1233905CB003BF357 = {
 			isa = PBXGroup;
 			children = (
-				55CB32D12339064C003BF357 /* SwiftHtmlPdf.xcodeproj */,
 				55CB32BC233905CB003BF357 /* SwiftHtmlPdfExample */,
 				55CB32BB233905CB003BF357 /* Products */,
 				55CB32D7233906B7003BF357 /* Frameworks */,
@@ -101,14 +85,6 @@
 				55CB32DC233912AD003BF357 /* Cost.swift */,
 			);
 			path = SwiftHtmlPdfExample;
-			sourceTree = "<group>";
-		};
-		55CB32D22339064C003BF357 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				55CB32D62339064C003BF357 /* SwiftHtmlPdf.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		55CB32D7233906B7003BF357 /* Frameworks */ = {
@@ -165,28 +141,12 @@
 			mainGroup = 55CB32B1233905CB003BF357;
 			productRefGroup = 55CB32BB233905CB003BF357 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 55CB32D22339064C003BF357 /* Products */;
-					ProjectRef = 55CB32D12339064C003BF357 /* SwiftHtmlPdf.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				55CB32B9233905CB003BF357 /* SwiftHtmlPdfExample */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		55CB32D62339064C003BF357 /* SwiftHtmlPdf.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftHtmlPdf.framework;
-			remoteRef = 55CB32D52339064C003BF357 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		55CB32B8233905CB003BF357 /* Resources */ = {
