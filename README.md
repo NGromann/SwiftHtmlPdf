@@ -4,6 +4,10 @@ Generate HTML and PDF documents by using template html files and filling them wi
 
 This library allows you to generate HTML and PDF using HTML template files. Try out our [example project!](/Example)
 
+## Requirements
+
+* IOS 10 +
+
 ## Installation
 
 You can install SwiftHtmlPdf using Cocoa Pods.
