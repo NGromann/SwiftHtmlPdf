@@ -6,6 +6,6 @@ target 'SwiftHtmlPdfExample' do
   use_frameworks!
 
   # Pods for SwiftHtmlPdfExample
-  pod 'SwiftHtmlPdf', :git => 'https://github.com/NGromann/SwiftHtmlPdf.git'
+  pod 'SwiftHtmlPdf'
 
 end
