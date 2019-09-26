@@ -137,3 +137,12 @@ PDFComposer.renderHtmlFromResource(templateResource: String, delegate: PDFCompos
 ```
 This function works similar to the preview dialog but returns parsed html.
 
+Next up you can transform the html content into a PDF file:
+```swift
+let path = PDFComposer.exportHTMLContentToPDF(HTMLContent: htmlContent)
+```
+
+Alternatively you can use the following function to create a pdf without writing it into a file:
+```swift
+
+```
