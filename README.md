@@ -28,7 +28,7 @@ $ pod install
 
 ## Usage
 
-### Create a html template resource and save it in your project:
+### Create a html template resource and save it in your project
 ```html
 <!DOCTYPE html>
 <html>
@@ -78,7 +78,7 @@ class MyListItem: PDFComposerDelegate {
         case "Name":
             return name
         default:
-            print("Unhandled PDF Key \(parameter) in Cost")
+            print("Unhandled PDF Key \(parameter) in MyListItem")
             return parameter
         }
     }
@@ -102,6 +102,14 @@ extension ViewController: PDFComposerDelegate {
         return myListItems
     }
 ```
+
+Note the following delegate functions:
+* ```valueForParameter(parameter: String, index: Int)```
+	* This function is called for every ```<field name="{parameter}"/>``` in your template
+* ```func itemsForParameter(parameter: String, index: Int) -> [PDFComposerDelegate]```
+	* The function is called for every ```<item name="{parameter}"/>``` in the current region of the template
+	* Return an array of child objects that will handle the region.
+	* For every returned object, a new region will be instantiated: ```<region name="{parameter}">...</region>```
 
 ### Show a Preview Dialog in your app
 ```swift
