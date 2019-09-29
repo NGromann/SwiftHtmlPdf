@@ -137,3 +137,19 @@ PDFComposer.renderHtmlFromResource(templateResource: String, delegate: PDFCompos
 ```
 This function works similar to the preview dialog but returns parsed html.
 
+Next up you can transform the html content into a PDF:
+```swift
+let pdfData = PDFComposer.exportHTMLContentToPDF(HTMLContent: htmlContent)
+```
+
+Alternatively you can use the following function to create a pdf file:
+```swift
+let pdfData = PDFComposer.exportHTMLContentToPDFFile(HTMLContent: htmlContent, path: path)
+```
+
+Now you can share the pdf using a ```UIActivityViewController```:
+```swift
+let activityVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
+        
+self.present(activityVC, animated: true, completion: nil)
+```
