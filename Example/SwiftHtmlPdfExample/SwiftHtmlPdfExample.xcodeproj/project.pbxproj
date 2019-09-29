@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36555B951C07AB9EE3E0AD24 /* Pods_SwiftHtmlPdfExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBCA5968DD239DE2F2C0CB /* Pods_SwiftHtmlPdfExample.framework */; };
 		55CB32BE233905CB003BF357 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB32BD233905CB003BF357 /* AppDelegate.swift */; };
 		55CB32C0233905CB003BF357 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB32BF233905CB003BF357 /* SceneDelegate.swift */; };
 		55CB32C2233905CB003BF357 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB32C1233905CB003BF357 /* ViewController.swift */; };
@@ -41,6 +42,9 @@
 		55CB32CB233905CC003BF357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55CB32DC233912AD003BF357 /* Cost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cost.swift; sourceTree = "<group>"; };
 		55CB32DF233915B4003BF357 /* planbuildpro-baukosten-template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "planbuildpro-baukosten-template.html"; sourceTree = "<group>"; };
+		8BEBCA5968DD239DE2F2C0CB /* Pods_SwiftHtmlPdfExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftHtmlPdfExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B91247C3F1868A81BFC354F0 /* Pods-SwiftHtmlPdfExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftHtmlPdfExample.debug.xcconfig"; path = "Target Support Files/Pods-SwiftHtmlPdfExample/Pods-SwiftHtmlPdfExample.debug.xcconfig"; sourceTree = "<group>"; };
+		D5240E67B4BC0E7F97F0F975 /* Pods-SwiftHtmlPdfExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftHtmlPdfExample.release.xcconfig"; path = "Target Support Files/Pods-SwiftHtmlPdfExample/Pods-SwiftHtmlPdfExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36555B951C07AB9EE3E0AD24 /* Pods_SwiftHtmlPdfExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +65,7 @@
 				55CB32BC233905CB003BF357 /* SwiftHtmlPdfExample */,
 				55CB32BB233905CB003BF357 /* Products */,
 				55CB32D7233906B7003BF357 /* Frameworks */,
+				622C88B28F84A8C21111AEE6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,8 +96,19 @@
 		55CB32D7233906B7003BF357 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BEBCA5968DD239DE2F2C0CB /* Pods_SwiftHtmlPdfExample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		622C88B28F84A8C21111AEE6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B91247C3F1868A81BFC354F0 /* Pods-SwiftHtmlPdfExample.debug.xcconfig */,
+				D5240E67B4BC0E7F97F0F975 /* Pods-SwiftHtmlPdfExample.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -101,10 +118,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55CB32CE233905CC003BF357 /* Build configuration list for PBXNativeTarget "SwiftHtmlPdfExample" */;
 			buildPhases = (
+				FFC34E135B14D955605785A2 /* [CP] Check Pods Manifest.lock */,
 				55CB32B6233905CB003BF357 /* Sources */,
 				55CB32B7233905CB003BF357 /* Frameworks */,
 				55CB32B8233905CB003BF357 /* Resources */,
 				55CB32DA233906B8003BF357 /* Embed Frameworks */,
+				9ABD929748BBB40E3BBB9956 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,6 +180,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9ABD929748BBB40E3BBB9956 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftHtmlPdfExample/Pods-SwiftHtmlPdfExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftHtmlPdfExample/Pods-SwiftHtmlPdfExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftHtmlPdfExample/Pods-SwiftHtmlPdfExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFC34E135B14D955605785A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftHtmlPdfExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		55CB32B6233905CB003BF357 /* Sources */ = {
@@ -312,6 +373,7 @@
 		};
 		55CB32CF233905CC003BF357 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B91247C3F1868A81BFC354F0 /* Pods-SwiftHtmlPdfExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -330,6 +392,7 @@
 		};
 		55CB32D0233905CC003BF357 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5240E67B4BC0E7F97F0F975 /* Pods-SwiftHtmlPdfExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
