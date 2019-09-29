@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -107,7 +107,6 @@
 				B91247C3F1868A81BFC354F0 /* Pods-SwiftHtmlPdfExample.debug.xcconfig */,
 				D5240E67B4BC0E7F97F0F975 /* Pods-SwiftHtmlPdfExample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -404,6 +403,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftHtmlPdfExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
