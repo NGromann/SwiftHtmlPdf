@@ -104,24 +104,31 @@ public class PDFComposer {
         return result
     }
     
-    static func exportHTMLContentToPDF(HTMLContent: String, path: String? = nil) -> String {
-        let printPageRenderer = CustomPrintPageRenderer()
+    public static func exportHTMLContentToPDFFile(htmlContent: String, path: String?) -> String {
+        let pdfData = exportHTMLContentToPDF(htmlContent: htmlContent)
         
-        let printFormatter = UIMarkupTextPrintFormatter(markupText: HTMLContent)
-        printPageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
+        var pdfFilename = path
+        if pdfFilename == nil {
+            let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            pdfFilename = "\(docDir)/PDFExport.pdf"
+        }
         
-        let pdfData = drawPDFUsingPrintPageRenderer(printPageRenderer: printPageRenderer)
+        pdfData.write(toFile: pdfFilename!, atomically: true)
         
-        let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let pdfFilename = path ?? "\(docDir)/PDFExport.pdf"
-        
-        pdfData.write(toFile: pdfFilename, atomically: true)
-        
-        print("successfully saved pdf at: \(pdfFilename)")
-        return pdfFilename
+        print("successfully saved pdf at: \(pdfFilename!)")
+        return pdfFilename!
     }
     
-    static func drawPDFUsingPrintPageRenderer(printPageRenderer: UIPrintPageRenderer) -> NSData {
+    public static func exportHTMLContentToPDF(htmlContent: String) -> NSData {
+        let printPageRenderer = CustomPrintPageRenderer()
+        
+        let printFormatter = UIMarkupTextPrintFormatter(markupText: htmlContent)
+        printPageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
+        
+        return drawPDFUsingPrintPageRenderer(printPageRenderer: printPageRenderer)
+    }
+    
+    private static func drawPDFUsingPrintPageRenderer(printPageRenderer: UIPrintPageRenderer) -> NSData {
         let data = NSMutableData()
         
         UIGraphicsBeginPDFContextToData(data, CGRect.zero, nil)
@@ -211,8 +218,7 @@ public class PDFPreview: UIViewController, WKUIDelegate {
             return
         }
         
-        let path = PDFComposer.exportHTMLContentToPDF(HTMLContent: htmlContent)
-        let pdfData = NSData(contentsOfFile: path)
+        let pdfData = PDFComposer.exportHTMLContentToPDF(htmlContent: htmlContent)
         let activityVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
 
         activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
