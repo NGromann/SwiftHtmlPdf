@@ -127,13 +127,13 @@ func showPdfPreview() {
         }
     }
 ```
-* resourceName is the file name of the [template html](#Create-a-html-template-resource-and-save-it-in-your-project)
+* resourceName is the file name of the [template html](#Create-a-html-template-resource-and-save-it-in-your-project). Do not include the suffix (.html)
 * delegate is the View Controller (the root object)
 
 ### Parsing templates without the Preview Dialog
 To parse the html template without the preview dialog, you can the following function:
 ```swift
-PDFComposer.renderHtmlFromResource(templateResource: String, delegate: PDFComposerDelegate) -> String?
+let htmlContent = PDFComposer.renderHtmlFromResource(templateResource: templateResource, delegate: delegate)
 ```
 This function works similar to the preview dialog but returns parsed html.
 
