@@ -1,5 +1,13 @@
 # SwiftHtmlPdf
 
+<p align="left">
+<a href="https://cocoapods.org/pods/SwiftHtmlPdf"><img src="https://img.shields.io/cocoapods/v/SwiftHtmlPdf" alt="CocoaPods compatible" /></a>
+<img src="https://img.shields.io/badge/platform-iOS-blue.svg?style=flat" alt="Platform iOS" />
+<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift5-compatible-4BC51D.svg?style=flat" alt="Swift 5 compatible" /></a>
+<a href="https://github.com/NGromann/SwiftHtmlPdf/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
+</p>
+
+
 Generate HTML and PDF documents by using template html files and filling them with your data.
 
 This library allows you to generate HTML and PDF using HTML template files. Try out our [example project!](/Example)
@@ -127,13 +135,13 @@ func showPdfPreview() {
         }
     }
 ```
-* resourceName is the file name of the [template html](#Create-a-html-template-resource-and-save-it-in-your-project)
+* resourceName is the file name of the [template html](#Create-a-html-template-resource-and-save-it-in-your-project). Do not include the suffix (.html)
 * delegate is the View Controller (the root object)
 
 ### Parsing templates without the Preview Dialog
 To parse the html template without the preview dialog, you can the following function:
 ```swift
-PDFComposer.renderHtmlFromResource(templateResource: String, delegate: PDFComposerDelegate) -> String?
+let htmlContent = PDFComposer.renderHtmlFromResource(templateResource: templateResource, delegate: delegate)
 ```
 This function works similar to the preview dialog but returns parsed html.
 
