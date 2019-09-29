@@ -14,7 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		558EF943233BF873002B4E9B /* SwiftHtmlPdf.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftHtmlPdf.podspec; path = ../SwiftHtmlPdf.podspec; sourceTree = "<group>"; };
+		558EF943233BF873002B4E9B /* SwiftHtmlPdf.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftHtmlPdf.podspec; path = ../SwiftHtmlPdf.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		55CB32A2233903DE003BF357 /* SwiftHtmlPdf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftHtmlPdf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CB32A5233903DE003BF357 /* SwiftHtmlPdf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftHtmlPdf.h; sourceTree = "<group>"; };
 		55CB32A6233903DE003BF357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };

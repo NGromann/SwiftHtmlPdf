@@ -30,7 +30,7 @@ public class PDFComposer {
         
         let regions = parseRegionsInTemplate(&parsedTemplate)
         
-        return parseRegion(template, delegate: delegate, regions: regions)
+        return parseRegion(parsedTemplate, delegate: delegate, regions: regions)
     }
     
     private static func parseRegion(_ region: String, delegate: PDFComposerDelegate, regions: [String: String], index: Int = 0) -> String {
