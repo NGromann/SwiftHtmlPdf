@@ -124,6 +124,7 @@ public class PDFComposer {
     public static func exportHTMLContentToPDF(htmlContent: String) -> NSData? {
         let printPageRenderer = CustomPrintPageRenderer()
 
+        // Deactivated until UIMarkupTextPrintFormatter is available in Catalyst
 //        let printFormatter = UIMarkupTextPrintFormatter(markupText: htmlContent)
 //        printPageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
         
@@ -234,12 +235,11 @@ public class PDFPreview: UIViewController, WKUIDelegate {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func exportButtonTapped(_ sender: UIBarButtonItem) {
-        guard let htmlContent = htmlContent else {
+        guard let htmlContent = htmlContent, let pdfData = PDFComposer.exportHTMLContentToPDF(htmlContent: htmlContent) else {
             print("could not save.")
             return
         }
         
-        let pdfData = PDFComposer.exportHTMLContentToPDF(htmlContent: htmlContent)
         let activityVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
 
         activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
