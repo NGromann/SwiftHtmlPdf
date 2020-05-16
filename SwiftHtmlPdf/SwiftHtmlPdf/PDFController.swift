@@ -104,8 +104,10 @@ public class PDFComposer {
         return result
     }
     
-    public static func exportHTMLContentToPDFFile(htmlContent: String, path: String?) -> String {
-        let pdfData = exportHTMLContentToPDF(htmlContent: htmlContent)
+    public static func exportHTMLContentToPDFFile(htmlContent: String, path: String?) -> String? {
+        guard let pdfData = exportHTMLContentToPDF(htmlContent: htmlContent) else {
+            return nil
+        }
         
         var pdfFilename = path
         if pdfFilename == nil {
@@ -119,13 +121,32 @@ public class PDFComposer {
         return pdfFilename!
     }
     
-    public static func exportHTMLContentToPDF(htmlContent: String) -> NSData {
+    public static func exportHTMLContentToPDF(htmlContent: String) -> NSData? {
         let printPageRenderer = CustomPrintPageRenderer()
+
+//        let printFormatter = UIMarkupTextPrintFormatter(markupText: htmlContent)
+//        printPageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
         
-        let printFormatter = UIMarkupTextPrintFormatter(markupText: htmlContent)
-        printPageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
+        guard let printData = htmlContent.data(using: String.Encoding.utf8) else {
+            return nil
+        }
         
-        return drawPDFUsingPrintPageRenderer(printPageRenderer: printPageRenderer)
+        do {
+            let printText = try NSAttributedString(data: printData, options: [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding: String.Encoding.utf8.rawValue
+                ],  documentAttributes: nil)
+
+            let printFormatter = UISimpleTextPrintFormatter(attributedText: printText)
+
+            printPageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
+            
+            return drawPDFUsingPrintPageRenderer(printPageRenderer: printPageRenderer)
+        }
+        catch
+        {
+            return nil
+        }
     }
     
     private static func drawPDFUsingPrintPageRenderer(printPageRenderer: UIPrintPageRenderer) -> NSData {
