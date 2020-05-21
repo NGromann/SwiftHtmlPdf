@@ -1,4 +1,4 @@
-<img align="left" width="80" height="80" src="Resources/Icon.png" alt="Resume application project app icon">
+<img align="left" width="120" height="120" src="Resources/Icon.png" alt="Resume application project app icon">
 
 # SwiftHtmlPdf
 
