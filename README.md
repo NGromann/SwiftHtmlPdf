@@ -1,3 +1,5 @@
+<img align="left" width="80" height="80" src="Resources/Icon.png" alt="Resume application project app icon">
+
 # SwiftHtmlPdf
 
 <p align="left">
