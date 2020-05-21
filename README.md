@@ -38,6 +38,20 @@ $ pod install
 
 ## Usage
 
+### Workflow
+
+SwiftHtmlPdf works in 3 layers.
+
+##### [HTML](#Create-a-html-template-resource-and-save-it-in-your-project)
+You create a template HTML document that will then be filled with your data from the Swift code. 
+We defined 3 new HTML tags, that can be used to fill your HTML document with all kinds of data structures.
+
+##### Swift
+Using a `PDFComposerDelegate` you can map your swift classes to the HTML Template.
+
+##### PDF
+The created HTML document can be transformed into a PDF file. You can save and show the PDF in your app or display an `UIActivityViewController` so the user can send it around.
+
 ### Create a html template resource and save it in your project
 ```html
 <!DOCTYPE html>
