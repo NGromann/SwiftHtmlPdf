@@ -99,7 +99,7 @@ Syntax:
 <field name="{name}"/>
 ```
 
-Using fields you can output text into the html document. Fields can also be placed in Regions.
+Using fields you can output text into the html document. Fields can also be placed in Regions. When a field is found in your template, SwiftHtmlPdf will call `valueForParameter(parameter: String, index: Int) -> String` of the current `PDFComposerDelegate`. `parameter` is the name if the field.
   
 ### Fill the template with data
 First create your model and implement ```PDFComposerDelegate```
