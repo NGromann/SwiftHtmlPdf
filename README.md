@@ -58,9 +58,7 @@ The created HTML document can be transformed into a PDF file. You can save and s
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta content="text/html; charset=utf-8" http-equiv="content-type">
-		...
-		</style>
+        	<meta content="text/html; charset=utf-8" http-equiv="content-type">
 	</head>
 	<body>
         <h1>PDF Example</h1>
@@ -77,13 +75,31 @@ The created HTML document can be transformed into a PDF file. You can save and s
 </region>
 ```
 
-Note the following HTML tags
-* ```<item name="MyListItem"/>```
-  * This is a reference to the *MyListItem* region.
-* ```<region name="MyListItem">...</region>```
-  * This is a blueprint for an instance of *MyListItem*
-* ```<field name="Name"/>```
-  * This is a field that will be replaced by a variable
+SwiftHtmlPdf adds 3 HTML Tags for templating:
+
+#### Regions
+Syntax: 
+```html
+<region name="{name}">...</region>
+```
+
+Regions are templates for classes in Swift. Regions should be defined at the beginning or end of the HTML Template. 
+
+#### Items
+Syntax: 
+```html
+<item name="{name}"/>
+```
+
+Items are references to regions. When defining a Item in your template, SwiftHtmlPdf will call `itemsForParameter(parameter: String, index: Int)` of the current `PDFComposerDelegate`. The function should return a list of `PDFComposerDelegate` to instantiate at the given position. SwiftHtmlPdf then tries to find and create a copy of the region. Item tags can also be placed in Regions.
+
+#### Fields
+Syntax:
+```html
+<field name="{name}"/>
+```
+
+Using fields you can output text into the html document. Fields can also be placed in Regions.
   
 ### Fill the template with data
 First create your model and implement ```PDFComposerDelegate```
