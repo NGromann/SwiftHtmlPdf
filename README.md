@@ -12,7 +12,7 @@
 
 Generate HTML and PDF documents by using template html files and filling them with your data.
 
-This library allows you to generate HTML and PDF using HTML template files. Try out our [example project!](/Example)
+This library allows you to generate HTML and PDF using HTML template files. Try out our [example project!](/Example/SwiftHtmlPdfExample)
 
 ## Requirements
 
