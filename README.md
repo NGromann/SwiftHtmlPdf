@@ -199,4 +199,4 @@ self.present(activityVC, animated: true, completion: nil)
 Yes you can! But only using inline css. External references do not work.
 
 #### Does this framework work with Catalyst?
-We are currently investigating a crash where PDF generation causes a crash. However, the HTML generation works fine.
+We are currently investigating a bug where PDF generation causes a crash. However, the HTML generation works fine.
