@@ -196,7 +196,7 @@ self.present(activityVC, animated: true, completion: nil)
 
 ## FAQ
 #### Can I use CSS in the HTML Templates?
-Yes you can!
+Yes you can! But only using inline css. External references do not work.
 
 #### Does this framework work with Catalyst?
 We are currently investigating a crash where PDF generation causes a crash. However, the HTML generation works fine.
