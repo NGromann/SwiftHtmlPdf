@@ -1,9 +1,9 @@
 //
 //  PDFController.swift
-//  EinfachHausbau
+//  PlanBuildPro
 //
 //  Created by Niklas Gromann Privat on 27.12.18.
-//  Copyright © 2018 Einfach Hausbau. All rights reserved.
+//  Copyright © 2025 PlanBuildPro. All rights reserved.
 //
 
 import Foundation
@@ -172,7 +172,11 @@ import WebKit
 
 public class PDFPreview: UIViewController, WKUIDelegate {
     
-    private var webView: WKWebView?
+    private var webView: WKWebView? = {
+        let configuration = WKWebViewConfiguration()
+        let webView = WKWebView(frame: .zero, configuration: configuration)
+        return webView
+    }()
     
     private(set) public var delegate: PDFComposerDelegate?
     private(set) public var resource: String?
@@ -181,14 +185,8 @@ public class PDFPreview: UIViewController, WKUIDelegate {
     public override func loadView() {
         super.loadView()
         
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView!.uiDelegate = self
         view = webView
-        
-        if let htmlContent = htmlContent {
-            loadPreviewFromHtml(htmlContent: htmlContent)
-        }
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -228,6 +226,15 @@ public class PDFPreview: UIViewController, WKUIDelegate {
         
         if let webView = webView {
             webView.loadHTMLString(htmlContent, baseURL: nil)
+        }
+    }
+    
+    // Use this function when you want to display file:// URLs for images. For this, first write the htmlContent to the disk and supply a baseUrl. Images must be part of this baseUrl.
+    public func loadPreviewFromHtmlFile(htmlContent: String, htmlFileUrl: URL, baseUrl: URL) {
+        self.htmlContent = htmlContent
+        
+        if let webView = webView {
+            webView.loadFileURL(htmlFileUrl, allowingReadAccessTo: baseUrl)
         }
     }
     
@@ -272,6 +279,10 @@ public class PDFPreviewController: UINavigationController {
     
     public func loadPreviewFromHtml(htmlContent: String) {
         pdfPreview?.loadPreviewFromHtml(htmlContent: htmlContent)
+    }
+    
+    public func loadPreviewFromHtmlFile(htmlContent: String, htmlFileUrl: URL, baseUrl: URL) {
+        pdfPreview?.loadPreviewFromHtmlFile(htmlContent: htmlContent, htmlFileUrl: htmlFileUrl, baseUrl: baseUrl)
     }
 }
 
