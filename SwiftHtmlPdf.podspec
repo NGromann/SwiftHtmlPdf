@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SwiftHtmlPdf"
-  spec.version      = "1.0.4"
+  spec.version      = "1.0.5"
   spec.summary      = "Generate HTML and PDF documents by using template html files and filling them with your data."
 
   # This description is used to generate tags and improve search results.
