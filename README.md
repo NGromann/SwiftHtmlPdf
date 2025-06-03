@@ -1,6 +1,8 @@
-<img align="left" width="120" height="120" src="Resources/Icon.png" alt="Resume application project app icon">
+
 
 # SwiftHtmlPdf
+
+<img align="left" style="margin-right: 10px;" width="120" height="120" src="Resources/Icon.png" alt="Resume application project app icon"> 
 
 <p align="left">
 <a href="https://cocoapods.org/pods/SwiftHtmlPdf"><img src="https://img.shields.io/cocoapods/v/SwiftHtmlPdf" alt="CocoaPods compatible" /></a>
@@ -9,14 +11,24 @@
 <a href="https://github.com/NGromann/SwiftHtmlPdf/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
 </p>
 
-
-Generate HTML and PDF documents by using template html files and filling them with your data.
+Lightweight HTML and PDF templating using Swift.
 
 This library allows you to generate HTML and PDF using HTML template files. Try out our [example project!](/Example/SwiftHtmlPdfExample)
 
+## Table of Contents
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Workflow](#workflow)
+  - [Create a HTML template resource and save it in your project](#create-a-html-template-resource-and-save-it-in-your-project)
+  - [Fill the template with data](#fill-the-template-with-data)
+  - [Show a Preview Dialog in your app](#show-a-preview-dialog-in-your-app)
+  - [Parsing templates without the Preview Dialog](#parsing-templates-without-the-preview-dialog)
+- [FAQ](#faq)
+
 ## Requirements
 
-* IOS 10 +
+* IOS 10+
 
 ## Installation
 
@@ -52,7 +64,7 @@ Using a `PDFComposerDelegate` you can map your swift classes to the HTML Templat
 ##### [PDF](#Show-a-Preview-Dialog-in-your-app)
 The created HTML document can be transformed into a PDF file. You can save and show the PDF in your app or display an `UIActivityViewController` so the user can send it around.
 
-### Create a html template resource and save it in your project
+### Create a HTML template resource and save it in your project
 ```html
 <!DOCTYPE html>
 <html>
@@ -99,7 +111,7 @@ Syntax:
 <field name="{name}"/>
 ```
 
-Using fields you can output text into the html document. Fields can also be placed in Regions. When a field is found in your template, SwiftHtmlPdf will call `valueForParameter(parameter: String, index: Int) -> String` of the current `PDFComposerDelegate`. `parameter` is the name if the field.
+Using fields you can output text into the HTML document. Fields can also be placed within Regions. When a field is found in your template, SwiftHtmlPdf will call `valueForParameter(parameter: String, index: Int) -> String` of the current `PDFComposerDelegate`. `parameter` will be the name of the field.
   
 ### Fill the template with data
 First create your model and implement ```PDFComposerDelegate```
@@ -157,32 +169,34 @@ func showPdfPreview() {
         let preview = PDFPreviewController.instantiate()
         
         do {
-	    let resourceName = "planbuildpro-baukosten-template"
+	    let resourceName = "planbuildpro-baukosten-template" // Do not include the suffix (.html)
 	    let delegate = self
             try preview.loadPreviewFromHtmlTemplateResource(templateResource: resourceName, delegate: delegate)
 
             present(preview, animated: true, completion: nil)
         } catch {
-            print("Could not open pdf preview")
+            print("Could not open PDF preview")
         }
     }
 ```
-* resourceName is the file name of the [template html](#Create-a-html-template-resource-and-save-it-in-your-project). Do not include the suffix (.html)
+* resourceName is the file name of the [HTML template](#Create-a-html-template-resource-and-save-it-in-your-project). 
 * delegate is the View Controller (the root object)
 
+<img src="Resources/Preview.jpeg" alt="SwiftHtmlPdf Preview" width="393" />
+
 ### Parsing templates without the Preview Dialog
-To parse the html template without the preview dialog, you can the following function:
+To parse the HTML template without the preview dialog, you can the following function:
 ```swift
 let htmlContent = PDFComposer.renderHtmlFromResource(templateResource: templateResource, delegate: delegate)
 ```
-This function works similar to the preview dialog but returns parsed html.
+This function works similar to the preview dialog but returns parsed HTML.
 
-Next up you can transform the html content into a PDF:
+Next up you can transform the HTML content into a PDF:
 ```swift
 let pdfData = PDFComposer.exportHTMLContentToPDF(HTMLContent: htmlContent)
 ```
 
-Alternatively you can use the following function to create a pdf file:
+Alternatively you can use the following function to create a PDF file:
 ```swift
 let pdfData = PDFComposer.exportHTMLContentToPDFFile(HTMLContent: htmlContent, path: path)
 ```
@@ -195,8 +209,41 @@ self.present(activityVC, animated: true, completion: nil)
 ```
 
 ## FAQ
-#### Can I use CSS in the HTML Templates?
+### Can I use CSS in the HTML Templates?
 Yes you can! But only using inline css. External references do not work.
 
-#### Does this framework work with Catalyst?
+### Does this framework work with Catalyst?
 We are currently investigating a bug where PDF generation causes a crash. However, the HTML generation works fine.
+
+### Can I embed local images in the PDF?
+There are two ways to embed images in the PDF:
+#### 1. Using Base64 encoded images
+```html
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGBgAAAABAABJzQnCgAAAABJRU5ErkJggg==" alt="Example Image">
+```
+
+If you want to fill the image dynamically, you can use the `<field>` tag inside the image src:
+``` 
+<img src="<field name="imageContent"/>" alt="Example Image">
+```
+
+#### 2. Using file:// URLs
+You can provide render file:// urls that are part of local directories, for example the app's documents directory. 
+To achieve this use the `previewViewController.loadPreviewFromHtmlFile` function and including the baseUrl directory. 
+```swift
+do {
+    let htmlContent = PDFComposer.renderHtmlFromResource(templateResource: "...", delegate: self)!
+    
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let fileURL = documentsDirectory.appendingPathComponent("pdfPreview.html")
+    
+    try htmlContent.write(to: fileURL, atomically: true, encoding: .utf8)
+    
+    try previewViewController.loadPreviewFromHtmlFile(htmlContent: htmlContent, htmlFileUrl: fileURL, baseUrl: documentsDirectory)
+    
+    self.present(previewViewController, animated: true, completion: nil)
+}
+catch {
+    ...
+}
+```
